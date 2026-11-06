@@ -8,11 +8,6 @@ require __DIR__ . '/includes/header.php';
 ?>
 <main class="container d-flex align-items-center justify-content-center min-vh-100 py-4">
   <div class="w-100" style="max-width: 400px;">
-    <div class="text-end mb-3">
-      <button class="btn btn-link text-muted-ios p-0" data-toggle-tema aria-label="Ganti tema">
-        <i class="bi bi-circle-half fs-5"></i>
-      </button>
-    </div>
     <div class="card-ios text-center">
       <div class="brand-icon mx-auto mb-3"><i class="bi bi-book-half"></i></div>
       <h1 class="h3 fw-semibold mb-1">Perpustakaan</h1>
