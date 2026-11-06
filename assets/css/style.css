@@ -62,3 +62,7 @@ body {
 }
 .alert-ios.danger { color: var(--bad); }
 .alert-ios.warning { color: var(--accent); }
+
+/* Input boleh mengecil, ikon mata tetap di dalam field */
+.field input { min-width: 0; }
+.field button { flex-shrink: 0; line-height: 1; }
