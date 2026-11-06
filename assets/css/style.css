@@ -1,0 +1,55 @@
+/* Tema: gelap default, terang lewat [data-theme="light"] */
+:root {
+  --bg: #14110f; --card: #1e1a17; --field: #2a2521;
+  --text: #f4efe8; --muted: #9a9187; --line: #3a342f;
+  --accent: #d9a441; --on-accent: #1a1409;
+  --ok: #7fb685; --bad: #e07a6f;
+}
+[data-theme="light"] {
+  --bg: #f7f1e6; --card: #ffffff; --field: #f1ebe0;
+  --text: #1c1814; --muted: #7a7166; --line: #e4dccd;
+  --accent: #b7791f; --on-accent: #ffffff;
+  --ok: #3f7d4b; --bad: #b3443a;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, "Inter", system-ui, sans-serif;
+}
+.text-muted-ios { color: var(--muted); }
+
+/* Kartu */
+.card-ios {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 32px 24px;
+}
+.brand-icon {
+  width: 64px; height: 64px; border-radius: 18px;
+  background: var(--accent); color: var(--on-accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+}
+
+/* Input */
+.field {
+  display: flex; align-items: center; gap: 12px;
+  height: 52px; padding: 0 16px; margin-bottom: 12px;
+  background: var(--field); border-radius: 14px;
+}
+.field i, .field button { color: var(--muted); }
+.field input {
+  flex: 1; height: 100%;
+  background: transparent; border: 0; outline: 0; color: var(--text);
+}
+.field input::placeholder { color: var(--muted); }
+
+/* Tombol dan toggle */
+.btn-accent {
+  width: 100%; height: 52px; border: 0; border-radius: 14px;
+  background: var(--accent); color: var(--on-accent); font-weight: 600;
+}
+.btn-accent:active { transform: scale(.98); }
+.form-check-input:checked { background-color: var(--accent); border-color: var(--accent); }
