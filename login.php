@@ -35,7 +35,7 @@ require __DIR__ . '/includes/header.php';
           <input class="form-check-input" type="checkbox" id="ingat" name="ingat" <?= $ingatUser ? 'checked' : '' ?>>
           <label class="form-check-label" for="ingat">Ingat saya</label>
         </div>
-        <button type="submit" class="btn-accent">Masuk <i class="bi bi-arrow-right ms-1"></i></button>
+        <button type="submit" class="btn-accent">Masuk</button>
       </form>
       <p class="text-muted-ios small mt-4 mb-0">Perpustakaan Digital Mini</p>
     </div>
