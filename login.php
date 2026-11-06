@@ -7,11 +7,13 @@ $ingatUser = $_COOKIE['ingat_username'] ?? '';
 require __DIR__ . '/includes/header.php';
 ?>
 <main class="container d-flex align-items-center justify-content-center min-vh-100 py-4">
-  <div class="w-100" style="max-width: 400px;">
+  <div class="w-100" style="max-width: 420px;">
     <div class="card-ios text-center">
-      <div class="brand-icon mx-auto mb-3"><i class="bi bi-book-half"></i></div>
-      <h1 class="h3 fw-semibold mb-1">Perpustakaan</h1>
-      <p class="text-muted-ios mb-4">Masuk untuk mengelola koleksi buku.</p>
+      <i class="bi bi-book-half brand-glyph"></i>
+      <h1 class="h2 fw-bold mt-2 mb-0">Shelfwise</h1>
+      <p class="text-muted-ios mb-0">Digital Library</p>
+      <div class="divider-dot"><span></span></div>
+      <p class="text-muted-ios mb-4">Masuk untuk mengelola<br>koleksi buku Anda</p>
       <?php if ($flash): ?>
         <div class="alert-ios <?= htmlspecialchars($flash['type']) ?>" role="alert">
           <?= htmlspecialchars($flash['msg']) ?>
@@ -29,12 +31,13 @@ require __DIR__ . '/includes/header.php';
             <i class="bi bi-eye-slash"></i>
           </button>
         </label>
-        <div class="form-check form-switch my-3">
-          <input class="form-check-input" type="checkbox" role="switch" id="ingat" name="ingat" <?= $ingatUser ? 'checked' : '' ?>>
+        <div class="form-check my-3">
+          <input class="form-check-input" type="checkbox" id="ingat" name="ingat" <?= $ingatUser ? 'checked' : '' ?>>
           <label class="form-check-label" for="ingat">Ingat saya</label>
         </div>
-        <button type="submit" class="btn-accent">Masuk</button>
+        <button type="submit" class="btn-accent">Masuk <i class="bi bi-arrow-right ms-1"></i></button>
       </form>
+      <p class="text-muted-ios small mt-4 mb-0">Perpustakaan Digital Mini</p>
     </div>
   </div>
 </main>

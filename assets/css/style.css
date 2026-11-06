@@ -1,68 +1,68 @@
-/* Tema: gelap default, terang lewat [data-theme="light"] */
+/* Tema: terang default, gelap lewat [data-theme="dark"] */
 :root {
-  --bg: #14110f; --card: #1e1a17; --field: #2a2521;
-  --text: #f4efe8; --muted: #9a9187; --line: #3a342f;
-  --accent: #d9a441; --on-accent: #1a1409;
-  --ok: #7fb685; --bad: #e07a6f;
+  --bg: #f4f7fc; --card: #ffffff; --field: #ffffff;
+  --text: #14213d; --muted: #667085; --line: #e3e9f4;
+  --accent: #2d4a73; --on-accent: #ffffff; --soft: #e4ecfa;
+  --ok: #1e9e57; --ok-soft: #e3f5ea;
+  --warn: #e8590c; --warn-soft: #fdebdd;
+  --bad: #d92d20; --bad-soft: #fde8e6;
 }
-[data-theme="light"] {
-  --bg: #f7f1e6; --card: #ffffff; --field: #f1ebe0;
-  --text: #1c1814; --muted: #7a7166; --line: #e4dccd;
-  --accent: #b7791f; --on-accent: #ffffff;
-  --ok: #3f7d4b; --bad: #b3443a;
+[data-theme="dark"] {
+  --bg: #0f1623; --card: #172033; --field: #1e2a42;
+  --text: #eef2fa; --muted: #98a2b8; --line: #263250;
+  --accent: #7fa3e0; --on-accent: #0f1623; --soft: #1f2d4a;
+  --ok: #5fcb8c; --ok-soft: #173326;
+  --warn: #f59a5b; --warn-soft: #3a2415;
+  --bad: #f08a80; --bad-soft: #3a1c19;
 }
 
 body {
-  background: var(--bg);
+  background:
+    radial-gradient(circle at 0 0, var(--soft) 0, transparent 38%),
+    radial-gradient(circle at 100% 100%, var(--soft) 0, transparent 34%),
+    var(--bg);
+  background-attachment: fixed;
   color: var(--text);
   font-family: -apple-system, "Inter", system-ui, sans-serif;
 }
 .text-muted-ios { color: var(--muted); }
 
-/* Kartu */
+/* Kartu dan logo */
 .card-ios {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  padding: 32px 24px;
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 24px; padding: 32px 24px;
+  box-shadow: 0 8px 30px rgba(20, 33, 61, .06);
 }
-.brand-icon {
-  width: 64px; height: 64px; border-radius: 18px;
-  background: var(--accent); color: var(--on-accent);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 28px;
-}
+.brand-glyph { font-size: 56px; color: var(--accent); line-height: 1; }
+.divider-dot { display: flex; align-items: center; gap: 12px; margin: 16px 0; }
+.divider-dot::before, .divider-dot::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.divider-dot span { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); opacity: .6; }
 
 /* Input */
 .field {
   display: flex; align-items: center; gap: 12px;
   height: 52px; padding: 0 16px; margin-bottom: 12px;
-  background: var(--field); border-radius: 14px;
+  background: var(--field); border: 1px solid var(--line); border-radius: 16px;
 }
+.field:focus-within { border-color: var(--accent); }
 .field i, .field button { color: var(--muted); }
+.field > i { padding-right: 12px; border-right: 1px solid var(--line); }
 .field input {
-  flex: 1; height: 100%;
+  flex: 1; min-width: 0; height: 100%;
   background: transparent; border: 0; outline: 0; color: var(--text);
 }
 .field input::placeholder { color: var(--muted); }
+.field button { flex-shrink: 0; line-height: 1; }
 
-/* Tombol dan toggle */
+/* Tombol dan checkbox */
 .btn-accent {
-  width: 100%; height: 52px; border: 0; border-radius: 14px;
+  width: 100%; height: 52px; border: 0; border-radius: 16px;
   background: var(--accent); color: var(--on-accent); font-weight: 600;
 }
 .btn-accent:active { transform: scale(.98); }
 .form-check-input:checked { background-color: var(--accent); border-color: var(--accent); }
 
 /* Pesan flash */
-.alert-ios {
-  background: var(--field); border-radius: 14px;
-  padding: 12px 16px; margin-bottom: 16px;
-  font-size: 14px; text-align: left;
-}
-.alert-ios.danger { color: var(--bad); }
-.alert-ios.warning { color: var(--accent); }
-
-/* Input boleh mengecil, ikon mata tetap di dalam field */
-.field input { min-width: 0; }
-.field button { flex-shrink: 0; line-height: 1; }
+.alert-ios { border-radius: 14px; padding: 12px 16px; margin-bottom: 16px; font-size: 14px; text-align: left; }
+.alert-ios.danger { background: var(--bad-soft); color: var(--bad); }
+.alert-ios.warning { background: var(--warn-soft); color: var(--warn); }
