@@ -32,12 +32,13 @@ $nama = $_SESSION['nama'] ?? 'Admin';
         <i class="bi bi-search"></i>
         <input type="search" name="q" placeholder="Cari buku..." value="<?= e($_GET["q"] ?? "") ?>">
         <div class="search-results" id="hasil-cari" hidden></div>
+        <?php if ($halaman === "buku") require __DIR__ . "/filter-buku.php"; ?>
       </form>
       <div class="dropdown ms-auto">
         <button class="user-chip" data-bs-toggle="dropdown" aria-expanded="false">
           <span class="avatar"><?= htmlspecialchars(strtoupper(substr($nama, 0, 1))) ?></span>
           <span class="d-none d-sm-inline"><?= htmlspecialchars($nama) ?></span>
-          <i class="bi bi-chevron-down small"></i>
+          <i class="bi bi-chevron-down small d-none d-sm-inline"></i>
         </button>
         <ul class="dropdown-menu dropdown-menu-end">
           <li><a class="dropdown-item" href="<?= BASE_URL ?>/pages/settings.php">Pengaturan</a></li>

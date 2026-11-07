@@ -267,3 +267,30 @@ body {
 .chip-n { color: var(--accent); font-weight: 700; }
 .chip.active { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 .chip.active .chip-n { color: inherit; }
+
+/* Tombol dan menu filter */
+.filter-btn {
+  position: relative; width: 34px; height: 34px; flex-shrink: 0; border: 0;
+  border-radius: 10px; background: var(--soft); color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+}
+.filter-dot {
+  position: absolute; top: 3px; right: 3px; width: 10px; height: 10px;
+  border-radius: 50%; background: var(--warn); border: 2px solid var(--card);
+}
+.filter-menu { min-width: 230px; padding: 8px; }
+.filter-title {
+  font-size: .75rem; color: var(--muted); letter-spacing: .04em;
+  text-transform: uppercase; margin: 8px 10px 4px;
+}
+.filter-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 9px 10px; border-radius: 10px; color: var(--text); text-decoration: none;
+}
+.filter-item:hover { background: var(--soft); }
+.filter-item.on { color: var(--accent); font-weight: 600; }
+.filter-item .n { color: var(--muted); font-weight: 400; }
+.filter-reset {
+  display: block; margin-top: 6px; padding: 10px; text-align: center;
+  color: var(--bad); text-decoration: none; border-top: 1px solid var(--line);
+}

@@ -18,20 +18,31 @@ if ($kat !== '') {
     $where[] = 'kategori = ?';
     $param[] = $kat;
 }
+
+// Filter status dari stok (hanya nilai yang diizinkan)
+$status = $_GET['status'] ?? '';
+if (!in_array($status, ['tersedia', 'dipinjam'], true)) {
+    $status = '';
+}
+if ($status === 'tersedia') {
+    $where[] = 'stok > 0';
+} elseif ($status === 'dipinjam') {
+    $where[] = 'stok = 0';
+}
 $sql = 'SELECT * FROM buku' . ($where ? ' WHERE ' . implode(' AND ', $where) : '') . ' ORDER BY id DESC';
 $stmt = $pdo->prepare($sql);
 $stmt->execute($param);
 $daftar = $stmt->fetchAll();
-$kosong = $q !== '' ? 'Buku tidak ditemukan.' : 'Belum ada buku.';
+$kosong = ($q !== '' || $kat !== '' || $status !== '') ? 'Buku tidak ditemukan.' : 'Belum ada buku.';
 
 // Jumlah buku per kategori (seluruh koleksi)
-$kategoriList = $pdo->query('SELECT kategori, COUNT(*) AS jml FROM buku GROUP BY kategori ORDER BY jml DESC, kategori')->fetchAll();
+$kondisi = ['tersedia' => ' WHERE stok > 0', 'dipinjam' => ' WHERE stok = 0'][$status] ?? '';
+$kategoriList = $pdo->query('SELECT kategori, COUNT(*) AS jml FROM buku' . $kondisi . ' GROUP BY kategori ORDER BY jml DESC, kategori')->fetchAll();
 $total = array_sum(array_column($kategoriList, 'jml'));
 
 require __DIR__ . '/../includes/header.php';
 require __DIR__ . '/../includes/sidebar.php';
 ?>
-<?php require __DIR__ . '/../includes/kategori-chips.php'; ?>
 
 <?php if ($flash): ?>
   <div class="alert-ios <?= e($flash['type']) ?>" role="alert"><?= e($flash['msg']) ?></div>
