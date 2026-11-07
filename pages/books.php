@@ -15,19 +15,15 @@ if ($q !== '') {
 }
 $daftar = $stmt->fetchAll();
 $kosong = $q !== '' ? 'Buku tidak ditemukan.' : 'Belum ada buku.';
+$tersedia = count(array_filter($daftar, fn($b) => $b['stok'] > 0));
+$ringkas = $q !== ''
+    ? count($daftar) . ' hasil untuk "' . $q . '"'
+    : count($daftar) . ' buku · ' . $tersedia . ' tersedia · ' . (count($daftar) - $tersedia) . ' dipinjam';
 
 require __DIR__ . '/../includes/header.php';
 require __DIR__ . '/../includes/sidebar.php';
 ?>
-<div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
-  <div>
-    <h1 class="page-title">Buku</h1>
-    <p class="text-muted-ios m-0" id="jumlah">
-      <?= $q !== '' ? count($daftar) . ' hasil untuk "' . e($q) . '"' : count($daftar) . ' buku terdaftar' ?>
-    </p>
-  </div>
-  <a class="btn-main" href="<?= BASE_URL ?>/pages/add-book.php"><i class="bi bi-plus-lg"></i> Tambah Buku</a>
-</div>
+<p class="ringkas" id="jumlah"><?= e($ringkas) ?></p>
 
 <?php if ($flash): ?>
   <div class="alert-ios <?= e($flash['type']) ?>" role="alert"><?= e($flash['msg']) ?></div>

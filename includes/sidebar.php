@@ -25,8 +25,8 @@ $nama = $_SESSION['nama'] ?? 'Admin';
 
   <div class="app-main">
     <header class="topbar">
-      <button class="btn p-0 d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-label="Menu">
-        <i class="bi bi-list fs-2"></i>
+      <button class="menu-btn d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-label="Menu">
+        <i class="bi bi-list"></i>
       </button>
       <form class="search" action="<?= BASE_URL ?>/pages/books.php" method="get" data-cari="<?= BASE_URL ?>/process/cari.php" autocomplete="off">
         <i class="bi bi-search"></i>
