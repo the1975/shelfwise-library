@@ -72,3 +72,37 @@ function uploadSampul(array $file): array
     }
     return [$nama, null];
 }
+
+// Validasi isian buku; hasil [data bersih atau null, pesan error atau null]
+function validasiBuku(array $in): array
+{
+    $data = [
+        'judul'        => trim($in['judul'] ?? ''),
+        'penulis'      => trim($in['penulis'] ?? ''),
+        'kategori'     => trim($in['kategori'] ?? ''),
+        'tahun_terbit' => (int) ($in['tahun_terbit'] ?? 0),
+        'stok'         => filter_var($in['stok'] ?? '', FILTER_VALIDATE_INT, ['options' => ['min_range' => 0, 'max_range' => 9999]]),
+    ];
+    if ($data['judul'] === '' || $data['penulis'] === '' || $data['kategori'] === '') {
+        return [null, 'Judul, penulis, dan kategori wajib diisi.'];
+    }
+    if ($data['tahun_terbit'] < 1901 || $data['tahun_terbit'] > (int) date('Y') + 1) {
+        return [null, 'Tahun terbit tidak valid.'];
+    }
+    if ($data['stok'] === false) {
+        return [null, 'Stok harus berupa angka 0 sampai 9999.'];
+    }
+    return [$data, null];
+}
+
+// Hapus file sampul dari folder uploads (basename mencegah path berbahaya)
+function hapusSampul(?string $nama): void
+{
+    if (!$nama) {
+        return;
+    }
+    $path = __DIR__ . '/../uploads/' . basename($nama);
+    if (is_file($path)) {
+        unlink($path);
+    }
+}

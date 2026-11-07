@@ -103,21 +103,23 @@ if (formCari && !hasil) {
   document.addEventListener('click', e => { if (!formCari.contains(e.target)) tutup(); });
 }
 
-// Pratinjau sampul sebelum diunggah
+// Pratinjau sampul sebelum diunggah (balik ke sampul lama kalau batal pilih)
 const inputSampul = document.getElementById('sampul');
 if (inputSampul) {
+  const img = document.getElementById('preview');
+  const lama = img.getAttribute('src');
+  const reset = () => {
+    img.hidden = !lama;
+    if (lama) img.src = lama;
+  };
+
   inputSampul.addEventListener('change', () => {
     const file = inputSampul.files[0];
-    const img = document.getElementById('preview');
-    if (!file) {
-      img.hidden = true;
-      return;
-    }
+    if (!file) return reset();
     if (file.size > 2 * 1024 * 1024) {
       alert('Ukuran sampul maksimal 2MB.');
       inputSampul.value = '';
-      img.hidden = true;
-      return;
+      return reset();
     }
     img.src = URL.createObjectURL(file);
     img.hidden = false;
