@@ -14,6 +14,7 @@ if ($q !== '') {
     $stmt = $pdo->query('SELECT * FROM buku ORDER BY id DESC');
 }
 $daftar = $stmt->fetchAll();
+$kosong = $q !== '' ? 'Buku tidak ditemukan.' : 'Belum ada buku.';
 
 require __DIR__ . '/../includes/header.php';
 require __DIR__ . '/../includes/sidebar.php';
@@ -33,23 +34,19 @@ require __DIR__ . '/../includes/sidebar.php';
 <?php endif; ?>
 
 <div class="panel" id="hasil-buku">
-  <div class="table-responsive">
+
+  <!-- Layar lebar: tabel -->
+  <div class="table-responsive d-none d-md-block">
     <table class="table table-ios table-hover align-middle">
       <thead>
         <tr>
-          <th>Buku</th>
-          <th class="d-none d-md-table-cell">Kategori</th>
-          <th class="d-none d-md-table-cell">Tahun</th>
-          <th class="d-none d-sm-table-cell">Stok</th>
-          <th>Status</th>
+          <th>Buku</th><th>Kategori</th><th>Tahun</th><th>Stok</th><th>Status</th>
           <th class="text-end">Aksi</th>
         </tr>
       </thead>
       <tbody>
         <?php if (!$daftar): ?>
-          <tr><td colspan="6" class="text-center text-muted-ios py-4">
-            <?= $q !== '' ? 'Buku tidak ditemukan.' : 'Belum ada buku.' ?>
-          </td></tr>
+          <tr><td colspan="6" class="text-center text-muted-ios py-4"><?= $kosong ?></td></tr>
         <?php endif; ?>
         <?php foreach ($daftar as $b): [$label, $warna] = statusBuku((int) $b['stok']); ?>
           <tr>
@@ -66,9 +63,9 @@ require __DIR__ . '/../includes/sidebar.php';
                 </div>
               </div>
             </td>
-            <td class="d-none d-md-table-cell"><?= e($b['kategori']) ?></td>
-            <td class="d-none d-md-table-cell"><?= e((string) $b['tahun_terbit']) ?></td>
-            <td class="d-none d-sm-table-cell"><?= (int) $b['stok'] ?></td>
+            <td><?= e($b['kategori']) ?></td>
+            <td><?= e((string) $b['tahun_terbit']) ?></td>
+            <td><?= (int) $b['stok'] ?></td>
             <td><span class="pill <?= $warna ?>"><?= $label ?></span></td>
             <td class="text-end text-nowrap">
               <a class="icon-btn" href="<?= BASE_URL ?>/pages/edit-book.php?id=<?= (int) $b['id'] ?>" aria-label="Edit"><i class="bi bi-pencil"></i></a>
@@ -79,6 +76,36 @@ require __DIR__ . '/../includes/sidebar.php';
       </tbody>
     </table>
   </div>
+
+  <!-- HP: baris yang bisa digeser -->
+  <div class="d-md-none">
+    <?php if (!$daftar): ?>
+      <p class="text-center text-muted-ios py-3 m-0"><?= $kosong ?></p>
+    <?php else: ?>
+      <p class="text-muted-ios small mb-2"><i class="bi bi-arrow-left-right"></i> Geser baris ke kiri untuk edit atau hapus</p>
+    <?php endif; ?>
+    <?php foreach ($daftar as $b): [$label, $warna] = statusBuku((int) $b['stok']); ?>
+      <div class="swipe">
+        <div class="swipe-content">
+          <?php if ($b['sampul']): ?>
+            <img class="cover" src="<?= BASE_URL ?>/uploads/<?= rawurlencode($b['sampul']) ?>" alt="">
+          <?php else: ?>
+            <div class="cover"><i class="bi bi-book"></i></div>
+          <?php endif; ?>
+          <div class="book-info">
+            <p class="book-title text-truncate m-0"><?= e($b['judul']) ?></p>
+            <p class="book-meta text-truncate m-0"><?= e($b['penulis']) ?> · <?= e((string) $b['tahun_terbit']) ?></p>
+          </div>
+          <span class="pill <?= $warna ?>"><?= $label ?></span>
+        </div>
+        <div class="swipe-actions">
+          <a class="edit" href="<?= BASE_URL ?>/pages/edit-book.php?id=<?= (int) $b['id'] ?>"><i class="bi bi-pencil"></i>Edit</a>
+          <button type="button" class="hapus btn-hapus" data-id="<?= (int) $b['id'] ?>" data-judul="<?= e($b['judul']) ?>"><i class="bi bi-trash"></i>Hapus</button>
+        </div>
+      </div>
+    <?php endforeach; ?>
+  </div>
+
 </div>
 <?php
 require __DIR__ . '/../includes/layout_end.php';
