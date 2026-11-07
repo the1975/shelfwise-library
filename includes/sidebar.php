@@ -48,6 +48,7 @@ $nama = $_SESSION['nama'] ?? 'Admin';
         <ul class="dropdown-menu dropdown-menu-end">
           
           <li><span class="dropdown-item-text small text-muted-ios"><?= isAdmin() ? 'Admin' : 'Pengunjung' ?></span></li>
+          <li><a class="dropdown-item" href="<?= BASE_URL ?>/pages/profile.php">Profil</a></li>
           <li><a class="dropdown-item" href="<?= BASE_URL ?>/process/logout.php">Keluar</a></li>
         </ul>
       </div>
