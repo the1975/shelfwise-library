@@ -124,3 +124,16 @@ if (inputSampul) {
     img.hidden = false;
   });
 }
+
+// Hapus buku: isi modal konfirmasi (delegasi event, jalan juga untuk hasil pencarian)
+const modalHapus = document.getElementById('modal-hapus');
+if (modalHapus) {
+  const modal = new bootstrap.Modal(modalHapus);
+  document.addEventListener('click', e => {
+    const tombol = e.target.closest('.btn-hapus');
+    if (!tombol) return;
+    document.getElementById('hapus-id').value = tombol.dataset.id;
+    document.getElementById('hapus-judul').textContent = tombol.dataset.judul;
+    modal.show();
+  });
+}

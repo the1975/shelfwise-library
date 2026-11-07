@@ -124,5 +124,6 @@ require __DIR__ . '/../includes/sidebar.php';
 
 </div>
 <?php
+require __DIR__ . '/../includes/modal-hapus.php';
 require __DIR__ . '/../includes/layout_end.php';
 require __DIR__ . '/../includes/footer.php';
