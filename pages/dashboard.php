@@ -20,7 +20,7 @@ require __DIR__ . '/../includes/sidebar.php';
     <a class="btn-soft" href="<?= BASE_URL ?>/pages/books.php">Lihat Semua</a>
   </div>
   <?php if (!$terbaru): ?>
-    <p class="text-muted-ios m-0 py-3">Belum ada buku. <a class="link-accent" href="<?= BASE_URL ?>/pages/add-book.php">Tambah buku pertama</a></p>
+    <p class="text-muted-ios m-0 py-3">Belum ada buku.<?php if (isAdmin()): ?> <a class="link-accent" href="<?= BASE_URL ?>/pages/add-book.php">Tambah buku pertama</a><?php endif; ?></p>
   <?php endif; ?>
   <?php foreach ($terbaru as $b): [$label, $warna] = statusBuku((int) $b['stok']); ?>
     <div class="book-row">

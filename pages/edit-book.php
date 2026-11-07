@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/../includes/auth.php';
+requireAdmin();
 $judul = 'Edit Buku';
 $halaman = 'buku';
 $flash = getFlash();

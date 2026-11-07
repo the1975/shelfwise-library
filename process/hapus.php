@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/../includes/auth.php';
+requireAdmin();
 
 // Hanya menerima POST supaya tidak bisa terhapus lewat alamat biasa
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

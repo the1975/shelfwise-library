@@ -106,3 +106,18 @@ function hapusSampul(?string $nama): void
         unlink($path);
     }
 }
+
+// Peran pengguna dari session
+function isAdmin(): bool
+{
+    return ($_SESSION['role'] ?? '') === 'admin';
+}
+
+// Guard: halaman dan proses khusus admin
+function requireAdmin(): void
+{
+    if (!isAdmin()) {
+        setFlash('warning', 'Halaman itu khusus admin.');
+        redirect('/pages/books.php');
+    }
+}

@@ -15,7 +15,9 @@ $nama = $_SESSION['nama'] ?? 'Admin';
         <a class="nav-item-ios <?= $aktif('dashboard') ?>" href="<?= BASE_URL ?>/pages/dashboard.php"><i class="bi bi-house-door"></i> Dashboard</a>
         <p class="nav-label">Manajemen</p>
         <a class="nav-item-ios <?= $aktif('buku') ?>" href="<?= BASE_URL ?>/pages/books.php"><i class="bi bi-book"></i> Buku</a>
+        <?php if (isAdmin()): ?>
         <a class="nav-item-ios <?= $aktif('tambah') ?>" href="<?= BASE_URL ?>/pages/add-book.php"><i class="bi bi-plus-lg"></i> Tambah Buku</a>
+        <?php endif; ?>
         <hr class="my-3" style="border-color: var(--line); opacity: 1;">
         <button type="button" class="nav-item-ios nav-btn d-lg-none" data-toggle-tema><i class="bi bi-circle-half"></i> Ganti tema</button>
         <a class="nav-item-ios" href="<?= BASE_URL ?>/process/logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a>
@@ -45,6 +47,7 @@ $nama = $_SESSION['nama'] ?? 'Admin';
         </button>
         <ul class="dropdown-menu dropdown-menu-end">
           
+          <li><span class="dropdown-item-text small text-muted-ios"><?= isAdmin() ? 'Admin' : 'Pengunjung' ?></span></li>
           <li><a class="dropdown-item" href="<?= BASE_URL ?>/process/logout.php">Keluar</a></li>
         </ul>
       </div>

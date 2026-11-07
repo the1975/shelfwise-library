@@ -3,6 +3,7 @@ require __DIR__ . '/../includes/auth.php';
 $judul = 'Buku';
 $halaman = 'buku';
 $filterBuku = true;
+$admin = isAdmin();
 $flash = getFlash();
 
 // Cari berdasarkan judul, penulis, atau kategori
@@ -57,12 +58,12 @@ require __DIR__ . '/../includes/sidebar.php';
       <thead>
         <tr>
           <th>Buku</th><th>Kategori</th><th>Tahun</th><th>Stok</th><th>Status</th>
-          <th class="text-end">Aksi</th>
+          <?php if ($admin): ?><th class="text-end">Aksi</th><?php endif; ?>
         </tr>
       </thead>
       <tbody>
         <?php if (!$daftar): ?>
-          <tr><td colspan="6" class="text-center text-muted-ios py-4"><?= $kosong ?></td></tr>
+          <tr><td colspan="<?= $admin ? 6 : 5 ?>" class="text-center text-muted-ios py-4"><?= $kosong ?></td></tr>
         <?php endif; ?>
         <?php foreach ($daftar as $b): [$label, $warna] = statusBuku((int) $b['stok']); ?>
           <tr>
@@ -83,10 +84,12 @@ require __DIR__ . '/../includes/sidebar.php';
             <td><?= e((string) $b['tahun_terbit']) ?></td>
             <td><?= (int) $b['stok'] ?></td>
             <td><span class="pill <?= $warna ?>"><?= $label ?></span></td>
+            <?php if ($admin): ?>
             <td class="text-end text-nowrap">
               <a class="icon-btn" href="<?= BASE_URL ?>/pages/edit-book.php?id=<?= (int) $b['id'] ?>" aria-label="Edit"><i class="bi bi-pencil"></i></a>
               <button type="button" class="icon-btn danger btn-hapus" data-id="<?= (int) $b['id'] ?>" data-judul="<?= e($b['judul']) ?>" aria-label="Hapus"><i class="bi bi-trash"></i></button>
             </td>
+            <?php endif; ?>
           </tr>
         <?php endforeach; ?>
       </tbody>
@@ -98,7 +101,7 @@ require __DIR__ . '/../includes/sidebar.php';
     <?php if (!$daftar): ?>
       <p class="text-center text-muted-ios py-3 m-0"><?= $kosong ?></p>
     <?php else: ?>
-      <p class="text-muted-ios small mb-2"><i class="bi bi-arrow-left-right"></i> Geser baris ke kiri untuk edit atau hapus</p>
+      <?php if ($admin): ?><p class="text-muted-ios small mb-2"><i class="bi bi-arrow-left-right"></i> Geser baris ke kiri untuk edit atau hapus</p><?php endif; ?>
     <?php endif; ?>
     <?php foreach ($daftar as $b): [$label, $warna] = statusBuku((int) $b['stok']); ?>
       <div class="swipe">
@@ -114,16 +117,20 @@ require __DIR__ . '/../includes/sidebar.php';
           </div>
           <span class="pill <?= $warna ?>"><?= $label ?></span>
         </div>
+        <?php if ($admin): ?>
         <div class="swipe-actions">
           <a class="edit" href="<?= BASE_URL ?>/pages/edit-book.php?id=<?= (int) $b['id'] ?>"><i class="bi bi-pencil"></i>Edit</a>
           <button type="button" class="hapus btn-hapus" data-id="<?= (int) $b['id'] ?>" data-judul="<?= e($b['judul']) ?>"><i class="bi bi-trash"></i>Hapus</button>
         </div>
+        <?php endif; ?>
       </div>
     <?php endforeach; ?>
   </div>
 
 </div>
 <?php
-require __DIR__ . '/../includes/modal-hapus.php';
+if ($admin) {
+    require __DIR__ . '/../includes/modal-hapus.php';
+}
 require __DIR__ . '/../includes/layout_end.php';
 require __DIR__ . '/../includes/footer.php';
