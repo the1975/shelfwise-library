@@ -30,7 +30,7 @@ $nama = $_SESSION['nama'] ?? 'Admin';
       </button>
       <form class="search" action="<?= BASE_URL ?>/pages/books.php" method="get">
         <i class="bi bi-search"></i>
-        <input type="search" name="q" placeholder="Cari buku...">
+        <input type="search" name="q" placeholder="Cari buku..." value="<?= e($_GET["q"] ?? "") ?>">
       </form>
       <div class="dropdown ms-auto">
         <button class="user-chip" data-bs-toggle="dropdown" aria-expanded="false">
