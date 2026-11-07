@@ -99,7 +99,7 @@ body {
 /* Topbar */
 .topbar { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
 .search {
-  flex: 1; max-width: 480px; height: 46px; padding: 0 16px;
+  flex: 1; height: 46px; padding: 0 16px;
   display: flex; align-items: center; gap: 10px;
   background: var(--card); border: 1px solid var(--line); border-radius: 14px;
 }
@@ -156,3 +156,11 @@ body {
 .pill::before { content: "●"; margin-right: 6px; font-size: .6rem; vertical-align: middle; }
 .pill.ok { background: var(--ok-soft); color: var(--ok); }
 .pill.warn { background: var(--warn-soft); color: var(--warn); }
+
+/* Tombol lembut */
+.btn-soft {
+  display: inline-block; padding: 8px 16px; border-radius: 12px;
+  background: var(--soft); color: var(--accent);
+  font-weight: 500; text-decoration: none;
+}
+.btn-soft:hover { filter: brightness(.96); }
