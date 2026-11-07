@@ -227,3 +227,21 @@ body {
 .swipe-actions i { font-size: 1.2rem; }
 .swipe-actions .edit { background: var(--accent); color: var(--on-accent); }
 .swipe-actions .hapus { background: var(--bad); color: var(--bad-soft); }
+
+/* Form */
+.form-label-ios { display: block; font-size: .85rem; color: var(--muted); margin: 0 0 6px 4px; }
+.field input[type="number"] { appearance: textfield; }
+.form-actions { display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.form-actions .btn-soft { height: 44px; display: inline-flex; align-items: center; padding: 0 18px; font-size: 1rem; }
+.form-hint { color: var(--muted); font-size: .8rem; margin: -4px 4px 12px; }
+
+/* Upload sampul */
+.upload {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  width: 100%; max-width: 220px; aspect-ratio: 3 / 4; margin: 0 auto;
+  border: 2px dashed var(--line); border-radius: 16px; background: var(--soft);
+  overflow: hidden; cursor: pointer; color: var(--muted); text-align: center;
+}
+.upload img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.upload-hint { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 12px; }
+.upload-hint i { font-size: 2rem; color: var(--accent); }

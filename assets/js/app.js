@@ -102,3 +102,24 @@ if (formCari && !hasil) {
   input.addEventListener('keydown', e => { if (e.key === 'Escape') tutup(); });
   document.addEventListener('click', e => { if (!formCari.contains(e.target)) tutup(); });
 }
+
+// Pratinjau sampul sebelum diunggah
+const inputSampul = document.getElementById('sampul');
+if (inputSampul) {
+  inputSampul.addEventListener('change', () => {
+    const file = inputSampul.files[0];
+    const img = document.getElementById('preview');
+    if (!file) {
+      img.hidden = true;
+      return;
+    }
+    if (file.size > 2 * 1024 * 1024) {
+      alert('Ukuran sampul maksimal 2MB.');
+      inputSampul.value = '';
+      img.hidden = true;
+      return;
+    }
+    img.src = URL.createObjectURL(file);
+    img.hidden = false;
+  });
+}
