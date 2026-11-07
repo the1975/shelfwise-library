@@ -117,3 +117,8 @@ body {
   --bs-dropdown-link-hover-color: var(--text);
   --bs-dropdown-border-color: var(--line); --bs-dropdown-border-radius: 14px;
 }
+
+/* Perbaikan topbar di HP */
+.search { min-width: 0; }
+.topbar > .btn { color: var(--text); }
+.user-chip { flex-shrink: 0; }
