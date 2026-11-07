@@ -122,3 +122,37 @@ body {
 .search { min-width: 0; }
 .topbar > .btn { color: var(--text); }
 .user-chip { flex-shrink: 0; }
+
+/* Panel dan statistik */
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px; }
+.stat { display: flex; align-items: center; gap: 14px; height: 100%; }
+.stat-icon {
+  width: 48px; height: 48px; border-radius: 14px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 22px;
+}
+.stat-num { font-size: 1.75rem; font-weight: 700; line-height: 1.1; }
+.stat-label { color: var(--muted); font-size: .875rem; }
+.tone-blue { background: var(--soft); color: var(--accent); }
+.tone-green { background: var(--ok-soft); color: var(--ok); }
+.tone-orange { background: var(--warn-soft); color: var(--warn); }
+@media (max-width: 575px) {
+  .panel.stat { flex-direction: column; text-align: center; gap: 8px; padding: 14px 6px; }
+  .stat-label { font-size: .75rem; }
+}
+
+/* Daftar buku */
+.panel-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.link-accent { color: var(--accent); text-decoration: none; font-weight: 500; }
+.book-row { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-top: 1px solid var(--line); }
+.book-info { flex: 1; min-width: 0; }
+.book-title { font-weight: 600; margin: 0; }
+.book-meta { color: var(--muted); font-size: .875rem; margin: 0; }
+.cover {
+  width: 44px; height: 60px; border-radius: 8px; flex-shrink: 0; object-fit: cover;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--soft); color: var(--muted);
+}
+.pill { font-size: .8rem; font-weight: 500; padding: 4px 12px; border-radius: 999px; white-space: nowrap; }
+.pill::before { content: "●"; margin-right: 6px; font-size: .6rem; vertical-align: middle; }
+.pill.ok { background: var(--ok-soft); color: var(--ok); }
+.pill.warn { background: var(--warn-soft); color: var(--warn); }

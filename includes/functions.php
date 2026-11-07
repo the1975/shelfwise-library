@@ -24,3 +24,18 @@ function getFlash(): ?array
     unset($_SESSION['flash']);
     return $flash;
 }
+
+// Escape teks untuk ditampilkan di HTML
+function e(?string $teks): string
+{
+    return htmlspecialchars((string) $teks, ENT_QUOTES, 'UTF-8');
+}
+
+// Label status dari stok: [teks, kelas warna]
+function statusBuku(int $stok): array
+{
+    if ($stok > 0) {
+        return ['Tersedia', 'ok'];
+    }
+    return ['Dipinjam', 'warn'];
+}
