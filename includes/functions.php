@@ -86,6 +86,9 @@ function validasiBuku(array $in): array
     if ($data['judul'] === '' || $data['penulis'] === '' || $data['kategori'] === '') {
         return [null, 'Judul, penulis, dan kategori wajib diisi.'];
     }
+    if (!in_array($data['kategori'], KATEGORI, true)) {
+        return [null, 'Pilih kategori dari daftar yang tersedia.'];
+    }
     if ($data['tahun_terbit'] < 1901 || $data['tahun_terbit'] > (int) date('Y') + 1) {
         return [null, 'Tahun terbit tidak valid.'];
     }
@@ -121,3 +124,9 @@ function requireAdmin(): void
         redirect('/pages/books.php');
     }
 }
+
+// Daftar kategori yang boleh dipakai (ubah di sini kalau perlu)
+const KATEGORI = [
+    'Novel', 'Sastra', 'Teknologi', 'Pengembangan Diri', 'Psikologi',
+    'Sains', 'Sejarah', 'Pendidikan', 'Lainnya',
+];

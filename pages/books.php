@@ -101,7 +101,7 @@ require __DIR__ . '/../includes/sidebar.php';
     <?php if (!$daftar): ?>
       <p class="text-center text-muted-ios py-3 m-0"><?= $kosong ?></p>
     <?php else: ?>
-      <?php if ($admin): ?><p class="text-muted-ios small mb-2"><i class="bi bi-arrow-left-right"></i> Geser baris ke kiri untuk edit atau hapus</p><?php endif; ?>
+      <?php if ($admin): ?><p class="text-muted-ios small mb-2"><i class="bi bi-arrow-left-right"></i> Swipe to edit</p><?php endif; ?>
     <?php endif; ?>
     <?php foreach ($daftar as $b): [$label, $warna] = statusBuku((int) $b['stok']); ?>
       <div class="swipe">

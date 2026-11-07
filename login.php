@@ -13,7 +13,6 @@ require __DIR__ . '/includes/header.php';
       <h1 class="h2 fw-bold mt-2 mb-0">Shelfwise</h1>
       <p class="text-muted-ios mb-0">Digital Library</p>
       <div class="divider-dot"><span></span></div>
-      <p class="text-muted-ios mb-4">Masuk untuk mengelola<br>koleksi buku Anda</p>
       <?php if ($flash): ?>
         <div class="alert-ios <?= htmlspecialchars($flash['type']) ?>" role="alert">
           <?= htmlspecialchars($flash['msg']) ?>

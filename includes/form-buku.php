@@ -2,55 +2,58 @@
 // Form buku bersama (tambah dan edit)
 // Butuh: $aksi, $data, $sampulLama, $idBuku; opsional $tombol
 $tombol = $tombol ?? 'Simpan';
+$fKategori = $data['kategori'] ?? '';
 ?>
 <form class="panel form-buku" action="<?= e($aksi) ?>" method="post" enctype="multipart/form-data">
   <?php if ($idBuku): ?>
     <input type="hidden" name="id" value="<?= (int) $idBuku ?>">
   <?php endif; ?>
 
-  <div class="sampul-row">
-    <label class="upload" for="sampul">
-      <img id="preview" alt="Pratinjau sampul" <?= $sampulLama ? 'src="' . e(BASE_URL . '/uploads/' . rawurlencode($sampulLama)) . '"' : 'hidden' ?>>
-      <span class="upload-hint"><i class="bi bi-image"></i></span>
-    </label>
-    <div>
-      <p class="sampul-judul">Sampul buku</p>
-      <p class="form-hint">JPG atau PNG, maksimal 2MB.</p>
-      <label for="sampul" class="btn-soft btn-pilih">Pilih gambar</label>
-    </div>
-    <input type="file" id="sampul" name="sampul" accept="image/jpeg,image/png" hidden>
-  </div>
-
-  <div class="row g-3">
-    <div class="col-12">
-      <label class="form-label-ios" for="judul">Judul Buku</label>
-      <div class="field"><input id="judul" name="judul" maxlength="150" value="<?= e($data['judul'] ?? '') ?>" required></div>
-    </div>
-    <div class="col-md-6">
-      <label class="form-label-ios" for="penulis">Penulis</label>
-      <div class="field"><input id="penulis" name="penulis" maxlength="100" value="<?= e($data['penulis'] ?? '') ?>" required></div>
-    </div>
-    <div class="col-md-6">
-      <label class="form-label-ios" for="kategori">Kategori</label>
-      <div class="field">
-        <input id="kategori" name="kategori" maxlength="50" list="daftar-kategori" value="<?= e($data['kategori'] ?? '') ?>" required>
-        <datalist id="daftar-kategori">
-          <option>Novel</option><option>Sastra</option><option>Teknologi</option>
-          <option>Pengembangan Diri</option><option>Psikologi</option><option>Sains</option>
-          <option>Sejarah</option><option>Pendidikan</option>
-        </datalist>
+  <div class="form-grid">
+    <div class="sampul-blok">
+      <label class="upload" for="sampul">
+        <img id="preview" alt="Pratinjau sampul" <?= $sampulLama ? 'src="' . e(BASE_URL . '/uploads/' . rawurlencode($sampulLama)) . '"' : 'hidden' ?>>
+        <span class="upload-hint"><i class="bi bi-image"></i><small>Pilih sampul<br>JPG/PNG, maks 2MB</small></span>
+      </label>
+      <div class="sampul-info d-md-none">
+        <p class="sampul-judul">Sampul buku</p>
+        <p class="form-hint">JPG atau PNG, maksimal 2MB.</p>
+        <label for="sampul" class="btn-soft btn-pilih">Pilih gambar</label>
       </div>
+      <input type="file" id="sampul" name="sampul" accept="image/jpeg,image/png" hidden>
     </div>
-    <div class="col-6 col-md-3">
-      <label class="form-label-ios" for="tahun_terbit">Tahun Terbit</label>
-      <div class="field"><input type="number" id="tahun_terbit" name="tahun_terbit" min="1901" max="<?= date('Y') + 1 ?>" value="<?= e((string) ($data['tahun_terbit'] ?? '')) ?>" required></div>
-    </div>
-    <div class="col-6 col-md-3">
-      <label class="form-label-ios" for="stok">Stok</label>
-      <div class="field"><input type="number" id="stok" name="stok" min="0" max="9999" value="<?= e((string) ($data['stok'] ?? '')) ?>" required></div>
-    </div>
-    <div class="col-12">
-      <p class="form-hint m-0">Status otomatis: Tersedia kalau stok lebih dari 0, Dipinjam kalau 0.</p>
+
+    <div class="row g-3">
+      <div class="col-12">
+        <label class="form-label-ios" for="judul">Judul Buku</label>
+        <div class="field"><input id="judul" name="judul" maxlength="150" value="<?= e($data['judul'] ?? '') ?>" required></div>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label-ios" for="penulis">Penulis</label>
+        <div class="field"><input id="penulis" name="penulis" maxlength="100" value="<?= e($data['penulis'] ?? '') ?>" required></div>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label-ios" for="kategori">Kategori</label>
+        <div class="field">
+          <select id="kategori" name="kategori" required>
+            <option value="" disabled <?= in_array($fKategori, KATEGORI, true) ? '' : 'selected' ?>>Pilih kategori</option>
+            <?php foreach (KATEGORI as $fOpsi): ?>
+              <option <?= $fKategori === $fOpsi ? 'selected' : '' ?>><?= e($fOpsi) ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+      </div>
+      <div class="col-6">
+        <label class="form-label-ios" for="tahun_terbit">Tahun Terbit</label>
+        <div class="field"><input type="number" id="tahun_terbit" name="tahun_terbit" min="1901" max="<?= date('Y') + 1 ?>" value="<?= e((string) ($data['tahun_terbit'] ?? '')) ?>" required></div>
+      </div>
+      <div class="col-6">
+        <label class="form-label-ios" for="stok">Stok</label>
+        <div class="field"><input type="number" id="stok" name="stok" min="0" max="9999" value="<?= e((string) ($data['stok'] ?? '')) ?>" required></div>
+      </div>
+      <div class="col-12">
+        <p class="form-hint m-0">Status otomatis: Tersedia kalau stok lebih dari 0, Dipinjam kalau 0.</p>
+      </div>
     </div>
   </div>
 
