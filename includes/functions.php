@@ -130,3 +130,13 @@ const KATEGORI = [
     'Novel', 'Sastra', 'Teknologi', 'Pengembangan Diri', 'Psikologi',
     'Sains', 'Sejarah', 'Pendidikan', 'Lainnya',
 ];
+
+// Upload foto profil: memakai uploadSampul dengan pesan error yang disesuaikan
+function uploadFoto(array $file): array
+{
+    [$nama, $error] = uploadSampul($file);
+    if ($error) {
+        $error = str_replace(['sampul', 'Sampul'], ['foto', 'Foto'], $error);
+    }
+    return [$nama, $error];
+}

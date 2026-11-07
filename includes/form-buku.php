@@ -51,9 +51,6 @@ $fKategori = $data['kategori'] ?? '';
         <label class="form-label-ios" for="stok">Stok</label>
         <div class="field"><input type="number" id="stok" name="stok" min="0" max="9999" value="<?= e((string) ($data['stok'] ?? '')) ?>" required></div>
       </div>
-      <div class="col-12">
-        <p class="form-hint m-0">Status otomatis: Tersedia kalau stok lebih dari 0, Dipinjam kalau 0.</p>
-      </div>
     </div>
   </div>
 

@@ -137,3 +137,20 @@ if (modalHapus) {
     modal.show();
   });
 }
+
+// Pratinjau foto profil
+const inputFoto = document.getElementById('foto');
+if (inputFoto) {
+  const bulat = document.getElementById('foto-preview');
+  inputFoto.addEventListener('change', () => {
+    const file = inputFoto.files[0];
+    if (!file) return;
+    if (file.size > 2 * 1024 * 1024) {
+      alert('Ukuran foto maksimal 2MB.');
+      inputFoto.value = '';
+      return;
+    }
+    bulat.src = URL.createObjectURL(file);
+    bulat.hidden = false;
+  });
+}

@@ -41,7 +41,7 @@ $nama = $_SESSION['nama'] ?? 'Admin';
       </button>
       <div class="dropdown">
         <button class="user-chip" data-bs-toggle="dropdown" aria-expanded="false">
-          <span class="avatar"><?= htmlspecialchars(strtoupper(substr($nama, 0, 1))) ?></span>
+          <span class="avatar"><?php if (!empty($_SESSION['foto'])): ?><img src="<?= BASE_URL ?>/uploads/<?= rawurlencode($_SESSION['foto']) ?>" alt=""><?php else: ?><?= htmlspecialchars(strtoupper(substr($nama, 0, 1))) ?><?php endif; ?></span>
           <span class="d-none d-sm-inline"><?= htmlspecialchars($nama) ?></span>
           <i class="bi bi-chevron-down small d-none d-sm-inline"></i>
         </button>

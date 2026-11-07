@@ -10,7 +10,7 @@ $username = trim($_POST['username'] ?? '');
 $password = $_POST['password'] ?? '';
 
 // Cari user, lalu cocokkan password dengan hash
-$stmt = $pdo->prepare('SELECT id, username, password, nama, role FROM users WHERE username = ?');
+$stmt = $pdo->prepare('SELECT id, username, password, nama, role, foto FROM users WHERE username = ?');
 $stmt->execute([$username]);
 $user = $stmt->fetch();
 
@@ -24,6 +24,7 @@ session_regenerate_id(true);
 $_SESSION['user_id'] = $user['id'];
 $_SESSION['nama'] = $user['nama'];
 $_SESSION['role'] = $user['role'];
+$_SESSION['foto'] = $user['foto'];
 
 // Remember me: simpan username 30 hari, atau hapus kalau tidak dicentang
 if (isset($_POST['ingat'])) {

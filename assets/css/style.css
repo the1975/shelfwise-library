@@ -338,7 +338,7 @@ body, .panel, .card-ios, .field, .search, .menu-btn, .tema-btn, .sidebar-inner,
 .sampul-info .form-hint { margin: 0; }
 .btn-pilih { margin-top: 10px; cursor: pointer; }
 @media (min-width: 768px) {
-  .form-grid { grid-template-columns: 240px 1fr; gap: 28px; align-items: center; }
+  .form-grid { grid-template-columns: 240px 1fr; gap: 28px; align-items: start; }
   .sampul-blok { display: block; }
   .sampul-blok .upload { width: 100%; max-width: 240px; margin: 0 auto; }
   .sampul-blok .upload-hint { padding: 12px; }
@@ -382,3 +382,16 @@ body, .panel, .card-ios, .field, .search, .menu-btn, .tema-btn, .sidebar-inner,
   background: var(--soft); color: var(--text); font-size: .8rem; font-weight: 500;
 }
 .info-row { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); font-size: .9rem; text-align: left; }
+
+/* Profil: foto bulat dan tata letak */
+.profil-grid { display: grid; gap: 24px; }
+@media (min-width: 768px) { .profil-grid { grid-template-columns: 190px 1fr; align-items: start; } }
+.foto-blok { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+.foto-bulat {
+  position: relative; width: 112px; height: 112px; border-radius: 50%; overflow: hidden; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent); color: var(--on-accent); font-size: 2.6rem; font-weight: 600;
+}
+.foto-bulat img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.avatar { overflow: hidden; }
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
