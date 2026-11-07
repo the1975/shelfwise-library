@@ -2,6 +2,7 @@
 require __DIR__ . '/../includes/auth.php';
 $judul = 'Buku';
 $halaman = 'buku';
+$filterBuku = true;
 $flash = getFlash();
 
 // Cari berdasarkan judul, penulis, atau kategori

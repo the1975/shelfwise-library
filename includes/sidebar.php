@@ -32,7 +32,7 @@ $nama = $_SESSION['nama'] ?? 'Admin';
         <i class="bi bi-search"></i>
         <input type="search" name="q" placeholder="Cari buku..." value="<?= e($_GET["q"] ?? "") ?>">
         <div class="search-results" id="hasil-cari" hidden></div>
-        <?php if ($halaman === "buku") require __DIR__ . "/filter-buku.php"; ?>
+        <?php if (!empty($filterBuku)) require __DIR__ . "/filter-buku.php"; ?>
       </form>
       <div class="dropdown ms-auto">
         <button class="user-chip" data-bs-toggle="dropdown" aria-expanded="false">

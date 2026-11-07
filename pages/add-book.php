@@ -17,7 +17,6 @@ require __DIR__ . '/../includes/sidebar.php';
 ?>
 <div class="mb-3">
   <h1 class="page-title">Tambah Buku</h1>
-  <p class="text-muted-ios m-0">Isi data buku dan unggah sampulnya.</p>
 </div>
 
 <?php if ($flash): ?>

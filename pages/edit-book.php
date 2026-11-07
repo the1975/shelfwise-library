@@ -27,7 +27,6 @@ require __DIR__ . '/../includes/sidebar.php';
 ?>
 <div class="mb-3">
   <h1 class="page-title">Edit Buku</h1>
-  <p class="text-muted-ios m-0">Ubah data buku atau ganti sampulnya.</p>
 </div>
 
 <?php if ($flash): ?>
