@@ -35,7 +35,6 @@ if (formCari && hasil) {
         const res = await fetch(url, { signal: ctrl.signal });
         const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
         hasil.innerHTML = doc.getElementById('hasil-buku').innerHTML;
-        document.getElementById('jumlah').textContent = doc.getElementById('jumlah').textContent.trim();
         history.replaceState(null, '', url);
       } catch (err) {
         if (err.name !== 'AbortError') console.error(err);

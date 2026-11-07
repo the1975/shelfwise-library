@@ -15,15 +15,16 @@ if ($q !== '') {
 }
 $daftar = $stmt->fetchAll();
 $kosong = $q !== '' ? 'Buku tidak ditemukan.' : 'Belum ada buku.';
-$tersedia = count(array_filter($daftar, fn($b) => $b['stok'] > 0));
-$ringkas = $q !== ''
-    ? count($daftar) . ' hasil untuk "' . $q . '"'
-    : count($daftar) . ' buku · ' . $tersedia . ' tersedia · ' . (count($daftar) - $tersedia) . ' dipinjam';
+
+// Statistik seluruh koleksi (tidak terpengaruh pencarian)
+$total    = (int) $pdo->query('SELECT COUNT(*) FROM buku')->fetchColumn();
+$tersedia = (int) $pdo->query('SELECT COUNT(*) FROM buku WHERE stok > 0')->fetchColumn();
+$dipinjam = $total - $tersedia;
 
 require __DIR__ . '/../includes/header.php';
 require __DIR__ . '/../includes/sidebar.php';
 ?>
-<p class="ringkas" id="jumlah"><?= e($ringkas) ?></p>
+<?php require __DIR__ . '/../includes/stat-cards.php'; ?>
 
 <?php if ($flash): ?>
   <div class="alert-ios <?= e($flash['type']) ?>" role="alert"><?= e($flash['msg']) ?></div>
