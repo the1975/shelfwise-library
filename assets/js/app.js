@@ -29,7 +29,7 @@ if (formCari && hasil) {
     timer = setTimeout(async () => {
       ctrl?.abort();
       ctrl = new AbortController();
-      const url = new URL(formCari.action);
+      const url = new URL(location.href);
       url.searchParams.set('q', input.value.trim());
       try {
         const res = await fetch(url, { signal: ctrl.signal });

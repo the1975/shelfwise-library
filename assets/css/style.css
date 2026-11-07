@@ -254,3 +254,16 @@ body {
   color: var(--text); font-size: 1.5rem;
 }
 .ringkas { color: var(--muted); margin: 0 0 14px; }
+
+/* Chip kategori */
+.chips { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin-bottom: 16px; padding-bottom: 2px; }
+.chips::-webkit-scrollbar { display: none; }
+.chip {
+  flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border-radius: 999px; white-space: nowrap; font-size: .9rem;
+  background: var(--card); border: 1px solid var(--line);
+  color: var(--text); text-decoration: none;
+}
+.chip-n { color: var(--accent); font-weight: 700; }
+.chip.active { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.chip.active .chip-n { color: inherit; }

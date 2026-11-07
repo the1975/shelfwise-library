@@ -6,25 +6,32 @@ $flash = getFlash();
 
 // Cari berdasarkan judul, penulis, atau kategori
 $q = trim($_GET['q'] ?? '');
+$kat = trim($_GET['kategori'] ?? '');
+$where = [];
+$param = [];
 if ($q !== '') {
     $like = '%' . $q . '%';
-    $stmt = $pdo->prepare('SELECT * FROM buku WHERE judul LIKE ? OR penulis LIKE ? OR kategori LIKE ? ORDER BY id DESC');
-    $stmt->execute([$like, $like, $like]);
-} else {
-    $stmt = $pdo->query('SELECT * FROM buku ORDER BY id DESC');
+    $where[] = '(judul LIKE ? OR penulis LIKE ? OR kategori LIKE ?)';
+    array_push($param, $like, $like, $like);
 }
+if ($kat !== '') {
+    $where[] = 'kategori = ?';
+    $param[] = $kat;
+}
+$sql = 'SELECT * FROM buku' . ($where ? ' WHERE ' . implode(' AND ', $where) : '') . ' ORDER BY id DESC';
+$stmt = $pdo->prepare($sql);
+$stmt->execute($param);
 $daftar = $stmt->fetchAll();
 $kosong = $q !== '' ? 'Buku tidak ditemukan.' : 'Belum ada buku.';
 
-// Statistik seluruh koleksi (tidak terpengaruh pencarian)
-$total    = (int) $pdo->query('SELECT COUNT(*) FROM buku')->fetchColumn();
-$tersedia = (int) $pdo->query('SELECT COUNT(*) FROM buku WHERE stok > 0')->fetchColumn();
-$dipinjam = $total - $tersedia;
+// Jumlah buku per kategori (seluruh koleksi)
+$kategoriList = $pdo->query('SELECT kategori, COUNT(*) AS jml FROM buku GROUP BY kategori ORDER BY jml DESC, kategori')->fetchAll();
+$total = array_sum(array_column($kategoriList, 'jml'));
 
 require __DIR__ . '/../includes/header.php';
 require __DIR__ . '/../includes/sidebar.php';
 ?>
-<?php require __DIR__ . '/../includes/stat-cards.php'; ?>
+<?php require __DIR__ . '/../includes/kategori-chips.php'; ?>
 
 <?php if ($flash): ?>
   <div class="alert-ios <?= e($flash['type']) ?>" role="alert"><?= e($flash['msg']) ?></div>
