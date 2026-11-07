@@ -188,3 +188,22 @@ body {
   font-weight: 600; text-decoration: none;
 }
 .alert-ios.success { background: var(--ok-soft); color: var(--ok); }
+
+/* Dropdown hasil pencarian */
+.search { position: relative; }
+.search-results {
+  position: absolute; top: calc(100% + 8px); left: 0; right: 0; z-index: 1000;
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(20, 33, 61, .15); overflow: hidden;
+}
+.search-item {
+  display: flex; align-items: center; gap: 12px; padding: 10px 16px;
+  color: var(--text); text-decoration: none; border-bottom: 1px solid var(--line);
+}
+.search-item:hover { background: var(--soft); }
+.search-item .book-info { flex: 1; min-width: 0; }
+.search-empty { margin: 0; padding: 14px 16px; color: var(--muted); }
+.search-all {
+  display: block; padding: 10px 16px; text-align: center;
+  color: var(--accent); font-weight: 500; text-decoration: none;
+}

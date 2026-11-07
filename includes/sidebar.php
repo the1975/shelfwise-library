@@ -28,9 +28,10 @@ $nama = $_SESSION['nama'] ?? 'Admin';
       <button class="btn p-0 d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-label="Menu">
         <i class="bi bi-list fs-2"></i>
       </button>
-      <form class="search" action="<?= BASE_URL ?>/pages/books.php" method="get">
+      <form class="search" action="<?= BASE_URL ?>/pages/books.php" method="get" data-cari="<?= BASE_URL ?>/process/cari.php" autocomplete="off">
         <i class="bi bi-search"></i>
         <input type="search" name="q" placeholder="Cari buku..." value="<?= e($_GET["q"] ?? "") ?>">
+        <div class="search-results" id="hasil-cari" hidden></div>
       </form>
       <div class="dropdown ms-auto">
         <button class="user-chip" data-bs-toggle="dropdown" aria-expanded="false">
