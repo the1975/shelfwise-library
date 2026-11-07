@@ -325,3 +325,16 @@ body, .panel, .card-ios, .field, .search, .menu-btn, .tema-btn, .sidebar-inner,
 .tema-btn .icon-sun { display: none; }
 [data-theme="dark"] .tema-btn .icon-sun { display: inline; }
 [data-theme="dark"] .tema-btn .icon-moon { display: none; }
+
+/* Form buku: sampul kecil di atas, isian dua kolom */
+.form-buku .field { margin-bottom: 0; }
+.form-buku .form-actions { margin-top: 20px; }
+.sampul-row { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+.sampul-row .upload { width: 104px; max-width: none; margin: 0; flex-shrink: 0; }
+.sampul-row .upload-hint { padding: 0; }
+.sampul-row .form-hint { margin: 0; }
+.sampul-judul { font-weight: 600; margin: 0 0 2px; }
+.btn-pilih { margin-top: 10px; cursor: pointer; }
+
+/* Tombol di dalam menu samping */
+.nav-btn { width: 100%; border: 0; background: transparent; text-align: left; font: inherit; }

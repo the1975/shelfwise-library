@@ -17,6 +17,7 @@ $nama = $_SESSION['nama'] ?? 'Admin';
         <a class="nav-item-ios <?= $aktif('buku') ?>" href="<?= BASE_URL ?>/pages/books.php"><i class="bi bi-book"></i> Buku</a>
         <a class="nav-item-ios <?= $aktif('tambah') ?>" href="<?= BASE_URL ?>/pages/add-book.php"><i class="bi bi-plus-lg"></i> Tambah Buku</a>
         <hr class="my-3" style="border-color: var(--line); opacity: 1;">
+        <button type="button" class="nav-item-ios nav-btn d-lg-none" data-toggle-tema><i class="bi bi-circle-half"></i> Ganti tema</button>
         <a class="nav-item-ios" href="<?= BASE_URL ?>/process/logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a>
       </nav>
     </div>
@@ -33,7 +34,7 @@ $nama = $_SESSION['nama'] ?? 'Admin';
         <div class="search-results" id="hasil-cari" hidden></div>
         <?php if (!empty($filterBuku)) require __DIR__ . "/filter-buku.php"; ?>
       </form>
-      <button type="button" class="tema-btn ms-auto d-none d-md-flex" data-toggle-tema aria-label="Ganti tema">
+      <button type="button" class="tema-btn ms-auto d-none d-lg-flex" data-toggle-tema aria-label="Ganti tema">
         <i class="bi bi-moon icon-moon"></i><i class="bi bi-sun icon-sun"></i>
       </button>
       <div class="dropdown">
@@ -43,7 +44,7 @@ $nama = $_SESSION['nama'] ?? 'Admin';
           <i class="bi bi-chevron-down small d-none d-sm-inline"></i>
         </button>
         <ul class="dropdown-menu dropdown-menu-end">
-          <li><button type="button" class="dropdown-item" data-toggle-tema><i class="bi bi-circle-half me-2"></i>Ganti tema</button></li>
+          
           <li><a class="dropdown-item" href="<?= BASE_URL ?>/process/logout.php">Keluar</a></li>
         </ul>
       </div>
