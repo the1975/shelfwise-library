@@ -36,7 +36,7 @@ require __DIR__ . '/../includes/sidebar.php';
 <section class="panel">
   <div class="panel-head">
     <h2 class="h5 fw-bold m-0">Buku Terbaru</h2>
-    <a class="link-accent" href="<?= BASE_URL ?>/pages/books.php">Lihat Semua</a>
+    <a class="btn-soft" href="<?= BASE_URL ?>/pages/books.php">Lihat Semua</a>
   </div>
   <?php if (!$terbaru): ?>
     <p class="text-muted-ios m-0 py-3">Belum ada buku. <a class="link-accent" href="<?= BASE_URL ?>/pages/add-book.php">Tambah buku pertama</a></p>
