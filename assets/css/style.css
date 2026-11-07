@@ -362,3 +362,11 @@ body, .panel, .card-ios, .field, .search, .menu-btn, .tema-btn, .sidebar-inner,
   box-shadow: 0 0 0 1000px var(--field) inset;
   caret-color: var(--text);
 }
+
+/* Checkbox: centang terlihat di dua tema, tanpa warna biru bawaan */
+.form-check-input { background-color: var(--field); border-color: var(--faint); }
+.form-check-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--soft); }
+.form-check-input:checked { background-color: var(--accent); border-color: var(--accent); }
+[data-theme="dark"] .form-check-input:checked[type="checkbox"] {
+  --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23171717' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+}
