@@ -39,17 +39,8 @@ $nama = $_SESSION['nama'] ?? 'Admin';
       <button type="button" class="tema-btn ms-auto d-none d-lg-flex" data-toggle-tema aria-label="Ganti tema">
         <i class="bi bi-moon icon-moon"></i><i class="bi bi-sun icon-sun"></i>
       </button>
-      <div class="dropdown">
-        <button class="user-chip" data-bs-toggle="dropdown" aria-expanded="false">
-          <span class="avatar"><?php if (!empty($_SESSION['foto'])): ?><img src="<?= BASE_URL ?>/uploads/<?= rawurlencode($_SESSION['foto']) ?>" alt=""><?php else: ?><?= htmlspecialchars(strtoupper(substr($nama, 0, 1))) ?><?php endif; ?></span>
-          <span class="d-none d-sm-inline"><?= htmlspecialchars($nama) ?></span>
-          <i class="bi bi-chevron-down small d-none d-sm-inline"></i>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end">
-          
-          <li><span class="dropdown-item-text small text-muted-ios"><?= isAdmin() ? 'Admin' : 'Pengunjung' ?></span></li>
-          <li><a class="dropdown-item" href="<?= BASE_URL ?>/pages/profile.php">Profil</a></li>
-          <li><a class="dropdown-item" href="<?= BASE_URL ?>/process/logout.php">Keluar</a></li>
-        </ul>
-      </div>
+      <a class="user-chip" href="<?= BASE_URL ?>/pages/profile.php" aria-label="Profil">
+        <span class="avatar"><?php if (!empty($_SESSION['foto'])): ?><img src="<?= BASE_URL ?>/uploads/<?= rawurlencode($_SESSION['foto']) ?>" alt=""><?php else: ?><?= htmlspecialchars(strtoupper(substr($nama, 0, 1))) ?><?php endif; ?></span>
+        <span class="d-none d-sm-inline"><?= htmlspecialchars($nama) ?></span>
+      </a>
     </header>

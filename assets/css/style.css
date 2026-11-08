@@ -395,3 +395,7 @@ body, .panel, .card-ios, .field, .search, .menu-btn, .tema-btn, .sidebar-inner,
 .foto-bulat img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .avatar { overflow: hidden; }
 .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Avatar di topbar menuju Profil */
+a.user-chip { text-decoration: none; }
+a.user-chip:hover { opacity: .85; }
