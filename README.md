@@ -4,14 +4,13 @@ Aplikasi web perpustakaan mini untuk mengelola data buku: login dengan session d
 
 | | |
 |---|---|
-| **Nama** | Sandor |
-| **NPM** | ISI_NPM |
+| **Nama** | Leonardo Yanuarianto |
+| **NPM** | 2513020074 |
 | **Program Studi** | Sistem Informasi, Universitas Nusantara PGRI Kediri |
 | **Mata Kuliah** | Pemrograman Web |
 | **Tugas** | Tugas Terstruktur: Pengembangan Sistem Informasi Perpustakaan Digital Mini |
 
-- **Video demo:** ISI_LINK_YOUTUBE
-- **Demo online (opsional):** ISI_LINK_DEMO_ONLINE
+- **Video demo:** https://youtu.be/usy0qDokm4g
 
 ---
 
@@ -302,8 +301,8 @@ Pembatasan dilakukan **di server** (`requireAdmin()` pada halaman dan proses tam
 
 | Peran | Username | Password |
 |---|---|---|
-| Admin | `admin` | ISI_PASSWORD_ADMIN |
-| Pengunjung | `pengunjung` | ISI_PASSWORD_PENGUNJUNG |
+| Admin | `admin` | leon27 |
+| Pengunjung | `pengunjung` | dordordor |
 
 Password dapat diganti setelah login lewat menu **Profil**.
 
